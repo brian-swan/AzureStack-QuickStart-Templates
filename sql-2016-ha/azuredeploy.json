@@ -4,9 +4,10 @@
 	"parameters": {
 		"adminUsername": {
 			"type": "string",
-			"metadata": {
-				"description": "The name of the Administrator of the new VMs and Domain"
-			}
+					"metadata": {
+						"description": "The name of the Administrator of the new VMs and Domain"
+					},
+					"defaultValue": "azbetsqluser"
 		},
 		"adminPassword": {
 			"type": "securestring",
@@ -19,12 +20,13 @@
 			"allowedValues": [
 				"Standard_A1",
 				"Standard_A2",
-				"Standard_A3"
+				"Standard_A3",
+				"Standard_DS1_v2"
 			],
 			"metadata": {
 				"description": "The size of the AD VMs Created"
 			},
-			"defaultValue": "Standard_A2"
+			"defaultValue": "Standard_DS1_v2"
 		},
 		"sqlVMSize": {
 			"type": "string",
@@ -44,12 +46,13 @@
 			"allowedValues": [
 				"Standard_A1",
 				"Standard_A2",
-				"Standard_A3"
+				"Standard_A3",
+				"Standard_DS1_v2"
 			],
 			"metadata": {
 				"description": "The size of the Witness VM Created"
 			},
-			"defaultValue": "Standard_A1"
+			"defaultValue": "Standard_DS1_v2"
 		},
 		"vmDiskSize": {
 			"type": "string",
@@ -76,7 +79,7 @@
 			"metadata": {
 				"description": "The DNS Suffix for reverse lookup of public IPAddresses "
 			},
-			"defaultValue": "azurestack.external"
+			"defaultValue": "azure.com"
 		},
 		"sqlServerServiceAccountUserName": {
 			"type": "string",
@@ -127,14 +130,14 @@
 			"metadata": {
 				"description": "Fault Domain Count Integer"
 			},
-			"defaultValue": "1"
+			"defaultValue": 3
 		},
 		"platformUpdateDomainCount": {
 			"type": "int",
 			"metadata": {
 				"description": "Update Domain Count Integer"
 			},
-			"defaultValue": "1"
+			"defaultValue": 3
 		},
 		"virtualNetworkAddressRange": {
 			"type": "string",
