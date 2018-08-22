@@ -157,7 +157,7 @@
             },
             "diagnosticsProfile": {
                 "bootDiagnostics": {
-                    "enabled": "true",
+                    "enabled": "false",
                     "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('diagstorageName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).primaryEndpoints.blob)]"
                 }
             }
@@ -220,7 +220,7 @@
             },
             "diagnosticsProfile": {
                 "bootDiagnostics": {
-                    "enabled": "true",
+                    "enabled": "false",
                     "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('diagstorageName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).primaryEndpoints.blob)]"
                 }
             }
