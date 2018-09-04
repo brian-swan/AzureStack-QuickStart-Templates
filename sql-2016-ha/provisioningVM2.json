@@ -78,8 +78,12 @@
         "location": "[parameters('location')]",
         "properties": {
             "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
-            "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]",
-            "managed": true
+            "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]"
+        },
+        "sku": {
+            "name": "Aligned",
+            "tier": "Standard",
+            "capacity": 3
         }
     },
     {

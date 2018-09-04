@@ -307,8 +307,7 @@
 		"fswAddressName": "fswIP",
 		"vmSettings": {
 			"availabilitySets": {
-				"sqlAvailabilitySetName": "sqlAvailabilitySet",
-				"adAvailabilitySetName": "adAvailabilitySet"
+				"sqlAvailabilitySetName": "sqlAvailabilitySet"
 			},
 			"numberOfSqlVMDisks": "2",
 			"vmContainerName": "vhds",
@@ -599,9 +598,6 @@
 				"parameters": {
 					"adPDCVMName": {
 						"value": "[variables('vmSettings').adPDCVMName]"
-					},
-					"adAvailabilitySetName": {
-						"value": "[variables('vmSettings').availabilitySets.adAvailabilitySetName]"
 					},
 					"location": {
 						"value": "[resourceGroup().location]"
