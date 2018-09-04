@@ -38,12 +38,6 @@
         "location": {
             "type": "string"
         },
-        "dcStorageAccountName": {
-            "type": "string"
-        },
-        "sqlStorageAccountName": {
-            "type": "string"
-        },
         "vmContainerName": {
             "type": "string"
         },
@@ -52,8 +46,7 @@
         }
     },
     "variables": {
-        "dcstorageName": "[parameters('dcStorageAccountName')]",
-        "diagstorageName": "[concat(uniquestring(parameters('sqlStorageAccountName')), 'diag')]"
+        "diagstorageName": "[concat(uniquestring(resourceGroup().Id, 'diag')]"
     },
   "resources": [
     {
@@ -90,19 +83,10 @@
                     "version": "latest"
                 },
                 "osDisk": {
-                    "name": "osdisk",
-                    "vhd": {
-                        "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('dcstorageName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).primaryEndpoints.blob ,parameters('vmContainerName'),'/', parameters('adPDCVMName'), '0','-osdisk.vhd')]"
-                    },
-                    "caching": "ReadWrite",
                     "createOption": "FromImage"
                 },
                 "dataDisks": [
                     {
-                        "vhd": {
-                            "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('dcstorageName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).primaryEndpoints.blob ,parameters('vmContainerName'),'/', parameters('adPDCVMName'), '0','data-1.vhd')]"
-                        },
-                        "name": "[concat(parameters('adPDCVMName'),'-data-disk1')]",
                         "createOption": "empty",
                         "caching": "None",
                         "diskSizeGB": 128,

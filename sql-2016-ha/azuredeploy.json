@@ -4,10 +4,10 @@
 	"parameters": {
 		"adminUsername": {
 			"type": "string",
-					"metadata": {
-						"description": "The name of the Administrator of the new VMs and Domain"
-					},
-					"defaultValue": "azbetsqluser"
+			"metadata": {
+				"description": "The name of the Administrator of the new VMs and Domain"
+			},
+			"defaultValue": "azbetsqluser"
 		},
 		"adminPassword": {
 			"type": "securestring",
@@ -60,12 +60,12 @@
 				"128",
 				"256",
 				"512",
-				"1000"
+				"1023"
 			],
 			"metadata": {
 				"description": "The size of the VMs data disk in GB."
 			},
-			"defaultValue": "1000"
+			"defaultValue": "1023"
 		},
 		"domainName": {
 			"type": "string",
@@ -88,42 +88,12 @@
 			},
 			"defaultValue": "sqlservice"
 		},
-		"sqlServerServiceAccountPassword": {
-			"type": "securestring",
-			"metadata": {
-				"description": "The SQL Server Service Account password"
-			}
-		},
 		"sqlAuthUserName": {
 			"type": "string",
 			"metadata": {
 				"description": "The SQL Server Auth Account name"
 			},
 			"defaultValue": "sqlsa"
-		},
-		"sqlAuthPassword": {
-			"type": "securestring",
-			"metadata": {
-				"description": "The SQL Server Auth Account password"
-			}
-		},
-		"sqlStorageAccountName": {
-			"type": "string",
-			"metadata": {
-				"description": "The name of Sql Server Storage Account"
-			},
-			"defaultValue": "[tolower(concat(take(uniqueString(resourceGroup().id),8),'sql'))]"
-		},
-		"sqlStorageAccountType": {
-			"type": "string",
-			"allowedValues": [
-				"Premium_LRS",
-				"Standard_LRS"
-			],
-			"metadata": {
-				"description": "The type of the Sql Server Storage Account created"
-			},
-			"defaultValue": "Premium_LRS"
 		},
 		"platformFaultDomainCount": {
 			"type": "int",
@@ -288,6 +258,32 @@
 				"description": "The Sql VM work load type: GENERAL - general work load"
 			},
 			"defaultValue": "GENERAL"
+		},
+		"updateSqlVmsScriptFile": {
+			"type": "string",
+			"defaultValue": "https://azurestackbetastorage.blob.core.windows.net/vmscripts/UpdateSqlVms.ps1"
+		},
+		"updateSqlVmsScriptName": {
+			"type": "string",
+			"defaultValue": "UpdateSqlVms.ps1"
+		},
+		"installAzBetMonitorScriptFile": {
+			"type": "string",
+			"defaultValue": "https://azurestackbetastorage.blob.core.windows.net/vmscripts/Install-AzbetMonitor.ps1"
+		},
+		"installAzBetMonitorScriptName": {
+			"type": "string",
+			"defaultValue": "Install-AzbetMonitor.ps1"
+		},
+		"storageAccountKey": {
+			"type": "string"
+		},
+		"restoreAspStateDb": {
+			"type": "string",
+			"defaultValue": "false"
+		},
+		"environmentName": {
+			"type": "string"
 		}
 	},
 	"variables": {
@@ -383,12 +379,10 @@
 				}
 			}
 		],
-		"virtualNetworkNameWithSuffix": "[substring(concat(parameters('virtualNetworkName'), uniqueString(parameters('sqlStorageAccountName'))),0,15)]",
-		"primaryDCIPAddressNameWithSuffix": "[substring(concat(variables('primaryDCIPAddressName'), uniqueString(parameters('sqlStorageAccountName'))),0,15)]",
-		"sql1AddressNameWithSuffix": "[substring(concat(variables('sql1AddressName'), uniqueString(parameters('sqlStorageAccountName'))),0,15)]",
-		"sql0AddressNameWithSuffix": "[substring(concat(variables('sql0AddressName'), uniqueString(parameters('sqlStorageAccountName'))),0,15)]",
-		"dcStorageAccountName": "[concat(substring(concat(parameters('sqlStorageAccountName'), uniqueString(parameters('sqlStorageAccountName'))),0,18),'dc')]",
-		"dcStorageAccountType": "Standard_LRS",
+		"virtualNetworkNameWithSuffix": "[substring(concat(parameters('virtualNetworkName'), uniqueString(resourceGroup().id),0,15)]",
+		"primaryDCIPAddressNameWithSuffix": "[substring(concat(variables('primaryDCIPAddressName'), uniqueString(resourceGroup().id)),0,15)]",
+		"sql1AddressNameWithSuffix": "[substring(concat(variables('sql1AddressName'), uniqueString(resourceGroup().id)),0,15)]",
+		"sql0AddressNameWithSuffix": "[substring(concat(variables('sql0AddressName'), uniqueString(resourceGroup().id)),0,15)]",
 		"configuration": {
 			"vnetwithDNSTemplateURL": "[concat(parameters('templatesBaseUrl'),'/vnet-with-dns-server.json')]",
 			"rdpIPAdressSetupURL": "[concat(parameters('templatesBaseUrl'),'/publicip-rdp.json')]",
@@ -454,18 +448,6 @@
 				"parameters": {
 					"location": {
 						"value": "[resourceGroup().location]"
-					},
-					"sqlStorageAccountName": {
-						"value": "[parameters('sqlStorageAccountName')]"
-					},
-					"dcStorageAccountName": {
-						"value": "[variables('dcStorageAccountName')]"
-					},
-					"SqlStorageAccountType": {
-						"value": "[parameters('sqlStorageAccountType')]"
-					},
-					"DcStorageAccountType": {
-						"value": "[variables('dcStorageAccountType')]"
 					},
 					"primaryDCIPAddressNameWithSuffix": {
 						"value": "[variables('primaryDCIPAddressNameWithSuffix')]"
@@ -619,12 +601,6 @@
 					"adAvailabilitySetName": {
 						"value": "[variables('vmSettings').availabilitySets.adAvailabilitySetName]"
 					},
-					"dcStorageAccountName": {
-						"value": "[variables('dcStorageAccountName')]"
-					},
-					"sqlStorageAccountName": {
-						"value": "[parameters('sqlStorageAccountName')]"
-					},
 					"location": {
 						"value": "[resourceGroup().location]"
 					},
@@ -756,9 +732,6 @@
 					"sqlAvailabilitySetName": {
 						"value": "[variables('vmSettings').availabilitySets.sqlAvailabilitySetName]"
 					},
-					"sqlStorageAccountName": {
-						"value": "[parameters('sqlStorageAccountName')]"
-					},
 					"location": {
 						"value": "[resourceGroup().location]"
 					},
@@ -858,13 +831,13 @@
 						"value": "[parameters('sqlServerServiceAccountUserName')]"
 					},
 					"sqlServerServiceAccountPassword": {
-						"value": "[parameters('sqlServerServiceAccountPassword')]"
+						"value": "[parameters('adminPassword')]"
 					},
 					"sqlAuthUserName": {
 						"value": "[parameters('sqlAuthUserName')]"
 					},
 					"sqlAuthPassword": {
-						"value": "[parameters('sqlAuthPassword')]"
+						"value": "[parameters('adminPassword')]"
 					},
 					"sharePath": {
 						"value": "[variables('sharePath')]"
@@ -935,7 +908,7 @@
 						"value": "[parameters('sqlServerServiceAccountUserName')]"
 					},
 					"sqlServerServiceAccountPassword": {
-						"value": "[parameters('sqlServerServiceAccountPassword')]"
+						"value": "[parameters('adminPassword')]"
 					},
 					"createClusterModulesURL": {
 						"value": "[variables('configuration').createClusterModulesURL]"
@@ -976,6 +949,54 @@
 					"workloadType": {
 						"value": "[parameters('workloadType')]"
 					}
+				}
+			}
+		},
+		{
+			"apiVersion": "2015-06-15",
+			"type": "Microsoft.Compute/virtualMachines/extensions",
+			"name": "[concat(variables('vm0Name'), '/RestoreAzbetDb0')]",
+			"location": "[resourceGroup().location]",
+			"dependsOn": [
+				"Microsoft.Resources/deployments/ConfiguringAlwaysOn"
+			],
+			"tags": {
+				"displayName": "RestoreAzBetDb0"
+			},
+			"properties": {
+				"publisher": "Microsoft.Compute",
+				"type": "CustomScriptExtension",
+				"typeHandlerVersion": "1.9",
+				"autoUpgradeMinorVersion": true,
+				"settings": {
+					"fileUris": [
+						"[parameters('updateSqlVmsScriptFile')]"
+					],
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName') ' > updatesqlvmsoutput.txt']"
+				}
+			}
+		},
+		{
+			"apiVersion": "2015-06-15",
+			"type": "Microsoft.Compute/virtualMachines/extensions",
+			"name": "[concat(variables('vm1Name'), '/RestoreAzbetDb1')]",
+			"location": "[resourceGroup().location]",
+			"dependsOn": [
+				"Microsoft.Resources/deployments/ConfiguringAlwaysOn"
+			],
+			"tags": {
+				"displayName": "RestoreAzBetDb1"
+			},
+			"properties": {
+				"publisher": "Microsoft.Compute",
+				"type": "CustomScriptExtension",
+				"typeHandlerVersion": "1.9",
+				"autoUpgradeMinorVersion": true,
+				"settings": {
+					"fileUris": [
+						"[parameters('updateSqlVmsScriptFile')]"
+					],
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' > updatesqlvmsoutput.txt')]"
 				}
 			}
 		}
