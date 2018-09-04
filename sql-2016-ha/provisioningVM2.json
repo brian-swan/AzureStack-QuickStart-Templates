@@ -78,7 +78,8 @@
         "location": "[parameters('location')]",
         "properties": {
             "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
-            "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]"
+            "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]",
+            "managed": true
         }
     },
     {

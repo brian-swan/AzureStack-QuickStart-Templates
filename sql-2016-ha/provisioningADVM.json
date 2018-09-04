@@ -53,7 +53,10 @@
         "type": "Microsoft.Compute/availabilitySets",
         "name": "[parameters('adAvailabilitySetName')]",
         "apiVersion": "2016-03-30",
-        "location": "[parameters('location')]"
+        "location": "[parameters('location')]",
+        "properties": {
+            "managed": true
+        }
     },
     {
         "apiVersion": "2016-03-30",
