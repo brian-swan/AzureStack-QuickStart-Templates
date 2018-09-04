@@ -65,7 +65,7 @@
         }
     },
     "variables": {
-        "diagstorageName": "[concat(uniquestring(resourceGroup().id, 'diag')]",
+        "diagstorageName": "[concat(uniquestring(resourceGroup().id), 'diag')]",
         "SQL2016SP1-WS2016-ENT": "SQL2016SP1-WS2016",
         "SQL2016SP1-WS2016-DEV": "SQL2016SP1-WS2016",
         "SQL2016SP1-WS2016-STD": "SQL2016SP1-WS2016"
