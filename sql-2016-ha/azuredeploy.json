@@ -311,7 +311,7 @@
 			},
 			"numberOfSqlVMDisks": "2",
 			"vmContainerName": "vhds",
-			"adPDCVMName": "[substring(concat('priDC-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
+			"adPDCVMName": "[substring(concat('pridc', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
 			"sqlVMName": "[substring(concat('sql-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
 			"sqlwVMName": "[substring(concat('fsw-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
 			"windowsImagePublisher": "MicrosoftWindowsServer",
@@ -380,7 +380,7 @@
 		],
 		"virtualNetworkNameWithSuffix": "[substring(concat(parameters('virtualNetworkName'), uniqueString(replace(resourceGroup().Id,'-',''))),0,15)]",
 		"primaryDCIPAddressNameWithSuffix": "[substring(concat(variables('primaryDCIPAddressName'), uniqueString(replace(resourceGroup().Id,'-',''))),0,15)]",
-		"sql1AddressNameWithSuffix": "[substring(concat(variables('sql1AddressName'), uniqueString(rreplace(resourceGroup().Id,'-',''))),0,15)]",
+		"sql1AddressNameWithSuffix": "[substring(concat(variables('sql1AddressName'), uniqueString(replace(resourceGroup().Id,'-',''))),0,15)]",
 		"sql0AddressNameWithSuffix": "[substring(concat(variables('sql0AddressName'), uniqueString(replace(resourceGroup().Id,'-',''))),0,15)]",
 		"configuration": {
 			"vnetwithDNSTemplateURL": "[concat(parameters('templatesBaseUrl'),'/vnet-with-dns-server.json')]",
