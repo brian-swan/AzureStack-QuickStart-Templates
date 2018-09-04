@@ -46,7 +46,7 @@
         }
     },
     "variables": {
-        "diagstorageName": "[concat(uniquestring(resourceGroup().Id, 'diag')]"
+        "diagstorageName": "[concat(uniquestring(resourceGroup().Id), 'diag')]"
     },
   "resources": [
     {

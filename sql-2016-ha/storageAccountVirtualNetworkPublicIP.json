@@ -36,7 +36,7 @@
     "resources": [
         {
             "type": "Microsoft.Storage/storageAccounts",
-            "name": "[concat(uniquestring(resourceGroup().Id, 'diag')]",
+            "name": "[concat(uniquestring(resourceGroup().Id), 'diag')]",
             "apiVersion": "2016-01-01",
             "location": "[parameters('location')]",
             "sku": {

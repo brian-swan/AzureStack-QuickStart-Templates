@@ -379,7 +379,7 @@
 				}
 			}
 		],
-		"virtualNetworkNameWithSuffix": "[substring(concat(parameters('virtualNetworkName'), uniqueString(resourceGroup().id),0,15)]",
+		"virtualNetworkNameWithSuffix": "[substring(concat(parameters('virtualNetworkName'), uniqueString(resourceGroup().id)),0,15)]",
 		"primaryDCIPAddressNameWithSuffix": "[substring(concat(variables('primaryDCIPAddressName'), uniqueString(resourceGroup().id)),0,15)]",
 		"sql1AddressNameWithSuffix": "[substring(concat(variables('sql1AddressName'), uniqueString(resourceGroup().id)),0,15)]",
 		"sql0AddressNameWithSuffix": "[substring(concat(variables('sql0AddressName'), uniqueString(resourceGroup().id)),0,15)]",
