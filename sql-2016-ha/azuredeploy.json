@@ -405,7 +405,9 @@
 			"sqlAOPrepareConfigurationFunction": "PrepareAlwaysOnSqlServer.ps1\\PrepareAlwaysOnSqlServer",
 			"createClusterModulesURL": "[concat(parameters('scriptsBaseUrl'),'/CreateFailoverCluster.ps1.zip')]",
 			"createClusterConfigurationFunction": "CreateFailoverCluster.ps1\\CreateFailoverCluster"
-		}
+		},
+		"vm0Name": "[concat(substring(concat('sql-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8), '0')]",
+		"vm1Name": "[concat(substring(concat('sql-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8), '1')]"
 	},
 	"resources": [
 		{
