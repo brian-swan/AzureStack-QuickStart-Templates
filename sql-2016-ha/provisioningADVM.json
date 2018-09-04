@@ -42,10 +42,7 @@
             "type": "string"
         }
     },
-    "variables": {
-        "diagstorageName": "[concat(uniquestring(resourceGroup().Id), 'diag')]"
-    },
-  "resources": [
+    "resources": [
     {
         "apiVersion": "2016-03-30",
         "type": "Microsoft.Compute/virtualMachines",
@@ -88,8 +85,7 @@
             },
             "diagnosticsProfile": {
                 "bootDiagnostics": {
-                    "enabled": "false",
-                    "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('diagstorageName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).primaryEndpoints.blob)]"
+                    "enabled": "false"
                 }
             }
         },
