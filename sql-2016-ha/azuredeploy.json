@@ -974,7 +974,7 @@
 					"fileUris": [
 						"[parameters('updateSqlVmsScriptFile')]"
 					],
-					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName') ' > updatesqlvmsoutput.txt']"
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName') ' > updatesqlvmsoutput.txt')]"
 				}
 			}
 		},
