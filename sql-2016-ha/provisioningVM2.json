@@ -123,12 +123,14 @@
                 "dataDisks": [
                     {
                         "diskSizeGB": "[parameters('vmDiskSize')]",
+                        "name": "F",
                         "lun": 0,
                         "createOption": "Empty",
                         "caching": "ReadOnly"
                     },
                     {
                         "diskSizeGB": "[parameters('vmDiskSize')]",
+                        "name": "G",
                         "lun": 1,
                         "createOption": "Empty",
                         "caching": "ReadOnly"

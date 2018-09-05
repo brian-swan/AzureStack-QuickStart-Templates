@@ -975,7 +975,7 @@
 						"[parameters('updateSqlVmsScriptFile')]",
 						"[parameters('sqlMaintenanceSolutionFile')]"
 					],
-					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' > updatesqlvmsoutput.txt')]"
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' > updatesqlvmsoutput.txt')]"
 				}
 			}
 		},
@@ -1000,7 +1000,7 @@
 						"[parameters('updateSqlVmsScriptFile')]",
 						"[parameters('sqlMaintenanceSolutionFile')]"
 					],
-					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' > updatesqlvmsoutput.txt')]"
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' > updatesqlvmsoutput.txt')]"
 				}
 			}
 		}
