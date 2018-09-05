@@ -80,9 +80,7 @@
             "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]"
         },
         "sku": {
-            "name": "Aligned",
-            "tier": "Standard",
-            "capacity": 3
+            "name": "Aligned"
         }
     },
     {
