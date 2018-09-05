@@ -143,13 +143,13 @@
                     {
                         "diskSizeGB": "[parameters('vmDiskSize')]",
                         "lun": 0,
-                        "name": "[concat(parameters('sqlVMName'), copyindex(), '-datadisk1']",
+                        "name": "[concat(parameters('sqlVMName'), copyindex(), '-datadisk1')]",
                         "createOption": "Empty",
                         "caching": "ReadOnly"
                     },
                     {
                         "lun": 1,
-                        "name": "[concat(parameters('sqlVMName'), copyindex(), '-datadisk2']",
+                        "name": "[concat(parameters('sqlVMName'), copyindex(), '-datadisk2')]",
                         "createOption": "Attach",
                         "managedDisk": {
                             "id": "[resourceId('Microsoft.Compute/disks/', concat(parameters('sqlVMName'), copyindex() ))]"
