@@ -148,7 +148,7 @@
                         "lun": 1,
                         "createOption": "Attach",
                         "managedDisk": {
-                            "id": "[resourceId('Microsoft.Compute/disks/', concat(parameters('sqlVMName'), copyindex() ))]"
+                            "id": "[resourceId('Microsoft.Compute/disks/', concat(parameters('sqlVMName'), copyindex(), '-datadisk2' ))]"
                         }
                     }
                 ]
