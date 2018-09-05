@@ -100,14 +100,14 @@
 			"metadata": {
 				"description": "Fault Domain Count Integer"
 			},
-			"defaultValue": 3
+			"defaultValue": 2
 		},
 		"platformUpdateDomainCount": {
 			"type": "int",
 			"metadata": {
 				"description": "Update Domain Count Integer"
 			},
-			"defaultValue": 3
+			"defaultValue": 2
 		},
 		"virtualNetworkAddressRange": {
 			"type": "string",
@@ -312,8 +312,8 @@
 			"numberOfSqlVMDisks": "2",
 			"vmContainerName": "vhds",
 			"adPDCVMName": "[substring(concat('pridc', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
-			"sqlVMName": "[substring(concat('sql-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
-			"sqlwVMName": "[substring(concat('fsw-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
+			"sqlVMName": "[substring(concat('sql', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
+			"sqlwVMName": "[substring(concat('fsw', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
 			"windowsImagePublisher": "MicrosoftWindowsServer",
 			"windowsImageOffer": "WindowsServer",
 			"windowsImageSKU": "2016-Datacenter",
