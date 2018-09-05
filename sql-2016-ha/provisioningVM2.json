@@ -85,7 +85,7 @@
     },
     {
         "type": "Microsoft.Compute/disks",
-        "name": "[concat(parameters('vmName'), copyIndex(), '-datadisk2')]",
+        "name": "[concat(parameters('sqlVMName'), copyIndex(), '-datadisk2')]",
         "apiVersion": "2017-03-30",
         "location": "[resourceGroup().location]",
         "copy": {
