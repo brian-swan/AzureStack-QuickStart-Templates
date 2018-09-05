@@ -84,6 +84,25 @@
         }
     },
     {
+        "type": "Microsoft.Compute/disks",
+        "name": "[concat(parameters('vmName'), copyIndex(), '-datadisk2')]",
+        "apiVersion": "2017-03-30",
+        "location": "[resourceGroup().location]",
+        "copy": {
+            "name": "datadiskloop",
+            "count": 2
+        },
+        "sku": {
+            "name": "Premium_LRS"
+        },
+        "properties": {
+            "creationData": {
+                "createOption": "Empty"
+            },
+            "diskSizeGB": "[parameters('vmDiskSize')]"
+        }
+    },
+    {
         "apiVersion": "2017-03-30",
         "type": "Microsoft.Compute/virtualMachines",
         "name": "[concat(parameters('sqlVMName'), copyindex())]",
@@ -123,15 +142,7 @@
                 "dataDisks": [
                     {
                         "diskSizeGB": "[parameters('vmDiskSize')]",
-                        "name": "F",
                         "lun": 0,
-                        "createOption": "Empty",
-                        "caching": "ReadOnly"
-                    },
-                    {
-                        "diskSizeGB": "[parameters('vmDiskSize')]",
-                        "name": "G",
-                        "lun": 1,
                         "createOption": "Empty",
                         "caching": "ReadOnly"
                     }

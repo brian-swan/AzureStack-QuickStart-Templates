@@ -957,7 +957,7 @@
 		{
 			"apiVersion": "2015-06-15",
 			"type": "Microsoft.Compute/virtualMachines/extensions",
-			"name": "[concat(variables('vm0Name'), '/RestoreAzbetDb0')]",
+			"name": "[concat(variables('vm0Name'), '/UpdateSqlVm0')]",
 			"location": "[resourceGroup().location]",
 			"dependsOn": [
 				"Microsoft.Resources/deployments/ConfiguringAlwaysOn"
@@ -975,14 +975,14 @@
 						"[parameters('updateSqlVmsScriptFile')]",
 						"[parameters('sqlMaintenanceSolutionFile')]"
 					],
-					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' > updatesqlvmsoutput.txt')]"
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' -EnvironmentName ', parameters('environmentName'), ' -ConnectMachines ', variables('vm1name'), ' -StorageAccountKey ', parameters('storageAccountKey'), ' > updatesqlvmsoutput.txt')]"
 				}
 			}
 		},
 		{
 			"apiVersion": "2015-06-15",
 			"type": "Microsoft.Compute/virtualMachines/extensions",
-			"name": "[concat(variables('vm1Name'), '/RestoreAzbetDb1')]",
+			"name": "[concat(variables('vm1Name'), '/UpdateSqlVm1')]",
 			"location": "[resourceGroup().location]",
 			"dependsOn": [
 				"Microsoft.Resources/deployments/ConfiguringAlwaysOn"
@@ -1000,7 +1000,7 @@
 						"[parameters('updateSqlVmsScriptFile')]",
 						"[parameters('sqlMaintenanceSolutionFile')]"
 					],
-					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' > updatesqlvmsoutput.txt')]"
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' -EnvironmentName ', parameters('environmentName'), ' -ConnectMachines ', variables('vm0name'), ' -StorageAccountKey ', parameters('storageAccountKey'), ' > updatesqlvmsoutput.txt')]"
 				}
 			}
 		}
