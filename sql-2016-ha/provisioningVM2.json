@@ -121,13 +121,13 @@
                     {
                         "diskSizeGB": "[parameters('vmDiskSize')]",
                         "lun": 0,
-                        "creationOption": "Empty",
+                        "createOption": "Empty",
                         "caching": "ReadOnly"
                     },
                     {
                         "diskSizeGB": "[parameters('vmDiskSize')]",
                         "lun": 1,
-                        "creationOption": "Empty",
+                        "createOption": "Empty",
                         "caching": "ReadOnly"
                     }
                 ]
