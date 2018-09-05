@@ -259,6 +259,10 @@
 			},
 			"defaultValue": "GENERAL"
 		},
+		"sqlMaintenanceSolutionFile": {
+			"type": "string",
+			"defaultValue": "https://azurestackbetastorage.blob.core.windows.net/vmscripts/MaintenanceSolution.sql"
+		},
 		"updateSqlVmsScriptFile": {
 			"type": "string",
 			"defaultValue": "https://azurestackbetastorage.blob.core.windows.net/vmscripts/UpdateSqlVms.ps1"
@@ -405,8 +409,8 @@
 			"createClusterModulesURL": "[concat(parameters('scriptsBaseUrl'),'/CreateFailoverCluster.ps1.zip')]",
 			"createClusterConfigurationFunction": "CreateFailoverCluster.ps1\\CreateFailoverCluster"
 		},
-		"vm0Name": "[concat(substring(concat('sql-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8), '0')]",
-		"vm1Name": "[concat(substring(concat('sql-', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8), '1')]"
+		"vm0Name": "[concat(substring(concat('sql', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8), '0')]",
+		"vm1Name": "[concat(substring(concat('sql', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8), '1')]"
 	},
 	"resources": [
 		{
@@ -968,7 +972,8 @@
 				"autoUpgradeMinorVersion": true,
 				"settings": {
 					"fileUris": [
-						"[parameters('updateSqlVmsScriptFile')]"
+						"[parameters('updateSqlVmsScriptFile')]",
+						"[parameters('sqlMaintenanceSolutionFile')]"
 					],
 					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' > updatesqlvmsoutput.txt')]"
 				}
@@ -992,7 +997,8 @@
 				"autoUpgradeMinorVersion": true,
 				"settings": {
 					"fileUris": [
-						"[parameters('updateSqlVmsScriptFile')]"
+						"[parameters('updateSqlVmsScriptFile')]",
+						"[parameters('sqlMaintenanceSolutionFile')]"
 					],
 					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' > updatesqlvmsoutput.txt')]"
 				}
