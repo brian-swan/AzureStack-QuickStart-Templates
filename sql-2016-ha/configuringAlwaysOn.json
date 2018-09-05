@@ -107,7 +107,7 @@
                      "password":"privateSettingsRef:sqlServerServiceAccountPassword"
                   },
                   "SQLAuthCreds":{  
-                     "userName":"[parameters('adminUsername)]]",
+                     "userName":"[parameters('adminUsername')]",
                      "password":"privateSettingsRef:sqlAuthPassword"
                   },
                   "NumberOfDisks":"[parameters('numberOfDisks')]",
