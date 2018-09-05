@@ -29,9 +29,6 @@
         "fswImageSKU": {
             "type": "string"
         },
-        "vmContainerName": {
-            "type": "string"
-        },
         "sqlImagePublisher": {
             "type": "string"
         },
@@ -85,7 +82,7 @@
     },
     {
         "type": "Microsoft.Compute/disks",
-        "name": "[concat(parameters('sqlVMName'), copyIndex())]",
+        "name": "[concat(parameters('sqlVMName'), copyIndex(), '-datadisk2')]",
         "apiVersion": "2017-03-30",
         "location": "[resourceGroup().location]",
         "copy": {
@@ -105,7 +102,7 @@
     {
         "apiVersion": "2017-03-30",
         "type": "Microsoft.Compute/virtualMachines",
-        "name": "[concat(parameters('sqlVMName'), copyindex(), '-datadisk2')]",
+        "name": "[concat(parameters('sqlVMName'), copyindex())]",
         "location": "[parameters('location')]",
         "dependsOn": [
             "[concat('Microsoft.Compute/availabilitySets/',parameters('sqlAvailabilitySetName'))]"

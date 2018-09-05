@@ -314,7 +314,6 @@
 				"sqlAvailabilitySetName": "sqlAvailabilitySet"
 			},
 			"numberOfSqlVMDisks": "2",
-			"vmContainerName": "vhds",
 			"adPDCVMName": "[substring(concat('pridc', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
 			"sqlVMName": "[substring(concat('sql', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
 			"sqlwVMName": "[substring(concat('fsw', uniquestring(replace(resourceGroup().Id,'-',''))), 0, 8)]",
@@ -624,9 +623,6 @@
 					"adImageSKU": {
 						"value": "[variables('vmSettings').windowsImageSKU]"
 					},
-					"vmContainerName": {
-						"value": "[variables('vmSettings').vmContainerName]"
-					},
 					"adPDCNicName": {
 						"value": "[variables('adPDCNicName')]"
 					},
@@ -742,9 +738,6 @@
 					},
 					"adminPassword": {
 						"value": "[parameters('adminPassword')]"
-					},
-					"vmContainerName": {
-						"value": "[variables('vmSettings').vmContainerName]"
 					},
 					"sqlVMName": {
 						"value": "[variables('vmSettings').sqlVMName]"
