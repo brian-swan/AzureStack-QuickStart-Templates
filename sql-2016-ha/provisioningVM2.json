@@ -73,7 +73,7 @@
     {
         "type": "Microsoft.Compute/availabilitySets",
         "name": "[parameters('sqlAvailabilitySetName')]",
-        "apiVersion": "2016-03-30",
+        "apiVersion": "2017-03-30",
         "location": "[parameters('location')]",
         "properties": {
             "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
