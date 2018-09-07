@@ -288,6 +288,17 @@
 		},
 		"environmentName": {
 			"type": "string"
+		},
+		"iaasDeployment": {
+			"type": "string",
+			"allowedValues": [
+				"true",
+				"false"
+			],
+			"metadata": {
+				"description": "true if the Web layer will be an Iaas deployment, false otherwise."
+			},
+			"defaultValue": "false"
 		}
 	},
 	"variables": {
@@ -968,7 +979,7 @@
 						"[parameters('updateSqlVmsScriptFile')]",
 						"[parameters('sqlMaintenanceSolutionFile')]"
 					],
-					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' -EnvironmentName ', parameters('environmentName'), ' -ConnectMachines ', variables('vm1name'), ' -StorageAccountKey ', parameters('storageAccountKey'), ' > updatesqlvmsoutput.txt')]"
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' -EnvironmentName ', parameters('environmentName'), ' -ConnectMachines ', variables('vm1name'), ' -StorageAccountKey ', parameters('storageAccountKey'), ' -IaasDeployment ', parameters('iaasDeployment'), ' > updatesqlvmsoutput.txt')]"
 				}
 			}
 		},
@@ -993,7 +1004,7 @@
 						"[parameters('updateSqlVmsScriptFile')]",
 						"[parameters('sqlMaintenanceSolutionFile')]"
 					],
-					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' -EnvironmentName ', parameters('environmentName'), ' -ConnectMachines ', variables('vm0name'), ' -StorageAccountKey ', parameters('storageAccountKey'), ' > updatesqlvmsoutput.txt')]"
+					"commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('updateSqlVmsScriptName'), ' -UserName ', parameters('adminUsername'), ' -Password ', parameters('adminPassword'), ' -EnvironmentName ', parameters('environmentName'), ' -ConnectMachines ', variables('vm0name'), ' -StorageAccountKey ', parameters('storageAccountKey'), ' -IaasDeployment ', parameters('iaasDeployment'), ' > updatesqlvmsoutput.txt')]"
 				}
 			}
 		}
