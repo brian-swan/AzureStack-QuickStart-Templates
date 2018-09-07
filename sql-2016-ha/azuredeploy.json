@@ -393,7 +393,7 @@
 			"creatingNicsUrl": "[concat(parameters('templatesBaseUrl'),'/creatingNICS.json')]",
 			"storageAccountVirtualNetworkPublicIP": "[concat(parameters('templatesBaseUrl'),'/storageAccountVirtualNetworkPublicIP.json')]",
 			"provisioningADVM": "[concat(parameters('templatesBaseUrl'),'/provisioningADVM','.json')]",
-			"provisioningSQLVMs": "[concat(parameters('templatesBaseUrl'),'/provisioningVM',variables('vmSettings').numberOfSqlVMDisks,'.json')]",
+			"provisioningSQLVMs": "[concat(parameters('templatesBaseUrl'),'/provisioningVM2.json')]",
 			"configuringBackupADVM": "[concat(parameters('templatesBaseUrl'),'/configuringBackupADVM.json')]",
 			"preparingAlwaysOnSqlServer": "[concat(parameters('templatesBaseUrl'),'/preparingSqlServer.json')]",
 			"configuringAlwaysOn": "[concat(parameters('templatesBaseUrl'),'/configuringAlwaysOn.json')]",
