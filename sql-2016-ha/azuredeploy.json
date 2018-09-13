@@ -271,14 +271,6 @@
 			"type": "string",
 			"defaultValue": "UpdateSqlVms.ps1"
 		},
-		"installAzBetMonitorScriptFile": {
-			"type": "string",
-			"defaultValue": "https://azurestackbetastorage.blob.core.windows.net/vmscripts/Install-AzbetMonitor.ps1"
-		},
-		"installAzBetMonitorScriptName": {
-			"type": "string",
-			"defaultValue": "Install-AzbetMonitor.ps1"
-		},
 		"storageAccountKey": {
 			"type": "string"
 		},
