@@ -282,10 +282,6 @@
 		"storageAccountKey": {
 			"type": "string"
 		},
-		"restoreAspStateDb": {
-			"type": "string",
-			"defaultValue": "false"
-		},
 		"environmentName": {
 			"type": "string"
 		},

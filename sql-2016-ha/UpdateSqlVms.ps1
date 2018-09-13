@@ -36,14 +36,6 @@ else
 Get-Service SQLSERVERAGENT | Start-Service
 Invoke-Sqlcmd -InputFile "MaintenanceSolution.sql"
 
-# TODO: Remove this is the template works for creating the right user.
-# Create azbetsqluser login
-<#$createLogin = "CREATE Login $UserName WITH Password = '$Password', SID = 0x593F982D94683D4ABA61D4390CF67FC9, CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF"
-$addLoginToSysAdmin = "ALTER SERVER ROLE sysadmin ADD MEMBER $UserName"
-Invoke-Sqlcmd -Query $createLogin 
-Invoke-Sqlcmd -Query $addLoginToSysAdmin
-Restart-Service -Force MSSQLSERVER#>
-
 # Install AzBet Monitor
 if( $null -eq (Get-Module -ListAvailable -Name AzureRM.Storage))
 {
@@ -158,7 +150,7 @@ $isPrimary = Invoke-SqlCmd -Query "select sys.fn_hadr_is_primary_replica ( 'Auto
 $primaryNameResult = Invoke-Sqlcmd -Query $getPrimaryName
 $primaryName = $primaryNameResult['PrimaryName']
 
-iif($isPrimary.Column1 -eq $true)
+if($isPrimary.Column1 -eq $true)
 {
     Invoke-Sqlcmd -Query $restoreAzbetDb -QueryTimeout 300
     Invoke-Sqlcmd -Query $joinAzBetDBPrimaryToAG -QueryTimeout 300
