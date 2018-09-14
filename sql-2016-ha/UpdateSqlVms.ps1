@@ -130,12 +130,6 @@ $joinASPStatePrimaryToAG = "ALTER AVAILABILITY GROUP `"alwayson-ag`" ADD DATABAS
 
 $joinASPStateSecondaryToAG = "ALTER DATABASE ASPState SET HADR AVAILABILITY GROUP = `"alwayson-ag`""
 
-if( (Get-Module -ListAvailable -Name AzureRM.Storage) -eq $null)
-{
-    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-    Install-Module AzureRM.Storage -Force
-}
-
 if(-not (Test-Path C:\AzBetDB.bak))
 {
     $context = New-AzureStorageContext -StorageAccountName azurestackbetastorage -StorageAccountKey $StorageAccountKey
